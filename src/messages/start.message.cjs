@@ -1,7 +1,7 @@
 const startMessage = (bot) => {
 
   bot.start((ctx) => ctx.reply(
-    'Bem vindo ao [Nome do Bot] 👋\n Escolha a opção que deseja realizar comigo!', {
+    '👋 Bem vindo ao [Nome do Bot]\n Escolha a opção que deseja realizar comigo!', {
     reply_markup: {
       inline_keyboard: [
         [
@@ -20,10 +20,6 @@ const startMessage = (bot) => {
   }
   ));
 
-  bot.action('CANAIS DIVULGADOS POR CATEGORIA', (ctx) => {
-    ctx.reply('Uma lista com dois botões\n1. Geral\n+18');
-    //ctx.reply('Uma lista com dois botões\n1. Geral\n+18')
-  });
 };
 
 module.exports = { startMessage };

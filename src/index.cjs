@@ -1,3 +1,5 @@
+import { buttonsManager } from './buttons/buttons.manager.cjs';
+
 const { Telegraf } = require('telegraf');
 const { message } = require('telegraf/filters');
 require('dotenv').config();
@@ -7,6 +9,7 @@ const bot = new Telegraf(process.env.BOT_TOKEN);
 
 bot.command('help', (ctx) => ctx.reply('Uma breve instrução sobre o bot e requisitos'));
 startMessage(bot);
+buttonsManager(bot);
 
 // Start no bot
 bot.launch();
