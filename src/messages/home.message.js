@@ -1,5 +1,7 @@
-const homeMessage = (ctx) => {
-  ctx.reply(
+const homeMessage = async (ctx) => {
+  // await ctx.deleteMessage();
+
+  await ctx.reply(
     '👋 Bem vindo ao [Nome do Bot]\n Escolha a opção que deseja realizar comigo!', {
     reply_markup: {
       inline_keyboard: [
@@ -20,4 +22,4 @@ const homeMessage = (ctx) => {
   );
 }
 
-module.exports = { homeMessage }
+export default homeMessage;
