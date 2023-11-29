@@ -1,7 +1,9 @@
-const infosMessage = async (ctx) => {
+import { Context } from "telegraf";
+
+const infosMessage = async (ctx:Context): Promise<void> => {
   await ctx.deleteMessage();
 
-  await ctx.replyWithMarkdown(
+  await ctx.replyWithMarkdownV2(
     'Manual de como usar o @DivulgaListaBot\n\n',
     {
       reply_markup: {

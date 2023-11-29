@@ -1,7 +1,9 @@
-const channelsCategory = async (ctx) => {
+import { Context } from "telegraf";
+
+const channelsCategory = async (ctx: Context) => {
   await ctx.deleteMessage();
 
-  await ctx.replyWithMarkdown('Uma lista com dois botões', {
+  await ctx.replyWithMarkdownV2('Uma lista com dois botões', {
     reply_markup: {
       inline_keyboard: [
         [

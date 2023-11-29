@@ -1,4 +1,6 @@
-const addChanneltoListMessage = async (ctx) => {
+import { Context } from "telegraf";
+
+const addChanneltoListMessage = async (ctx: Context) => {
   await ctx.deleteMessage();
 
   await ctx.replyWithMarkdown(

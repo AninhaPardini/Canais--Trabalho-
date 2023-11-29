@@ -1,3 +1,5 @@
+import { Context } from "telegraf"
+
 /**
  * Esta função envia uma lista de mensagens de canais.
  * @author Aninha Pardini
@@ -6,9 +8,10 @@
  * @description Contexto que contém a mensagem de Lista da categoria Geral de canais;
  * @since 1.0.0
  */
-const geralList = (ctx) => {
-  ctx.replyWithMarkup('',
+const geralList = async (ctx: Context): Promise<void> => {
+  ctx.deleteMessage();
+  ctx.replyWithMarkdownV2('',
     {
 
-    })
+    });
 }

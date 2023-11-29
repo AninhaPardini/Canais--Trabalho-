@@ -1,3 +1,5 @@
+import { Context, Telegraf } from "telegraf";
+
 /**
  * Esta função envia uma lista de mensagens de canais.
  * @author Aninha Pardini
@@ -6,14 +8,14 @@
  * @description Mensagem que contém informações de ajuda do bot;
  * @since 1.0.0
  */
-const helpMessage = async (bot) => {
+const helpMessage = async (bot: Telegraf): Promise<void> => {
 
-  await bot.help(async (ctx) => {
+  bot.help(async (ctx: Context) => {
     await ctx.deleteMessage();
 
     await ctx.reply(
-      'Manual de como usar o @BotCanais\n\n'
-    )
+      'Manual de como usar o @DivulgaCanais\n\n'
+    );
   });
 };
 
