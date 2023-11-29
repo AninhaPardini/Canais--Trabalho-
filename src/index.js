@@ -22,9 +22,17 @@ helpMessage(bot);
 //   }
 // });
 
+bot.on('new_chat_members', (ctx) => {
+  const chatId = ctx.message.chat.id;
+  const channelTitle = ctx.message.chat.title;
+
+  // Armazene o chatId em seu banco de dados ou em algum lugar
+  // onde você possa recuperá-lo posteriormente.
+  console.log(`Bot adicionado ao canal "${channelTitle}" com ID ${chatId}`);
+});
+
 // Start no bot
 bot.launch();
-bot.on(console.log('✅ Bot on'))
 
 // Enable graceful stop
 process.once('SIGINT', () => bot.stop('SIGINT'));
