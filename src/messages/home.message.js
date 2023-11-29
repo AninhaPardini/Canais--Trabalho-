@@ -3,8 +3,8 @@ const homeMessage = async (ctx) => {
 
   await ctx.reply(
     '👋 Bem vindo ao [Nome do Bot]\n Escolha a opção que deseja realizar comigo!',
-    { source: '' },
-    { caption: 'Legenda da imagem' },
+    { source: 'https://github.com/AninhaPardini/Canais--Trabalho-/blob/main/banner-home.png?raw=true' },
+    { caption: 'Divulga canais, o melhor bot de lista de canais do Telegram!' },
     {
       reply_markup: {
         inline_keyboard: [
