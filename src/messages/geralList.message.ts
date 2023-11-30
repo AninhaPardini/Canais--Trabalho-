@@ -10,8 +10,24 @@ import { Context } from "telegraf"
  */
 const geralList = async (ctx: Context): Promise<void> => {
   ctx.deleteMessage();
-  ctx.replyWithMarkdownV2('',
-    {
-
-    });
+  ctx.replyWithMarkdownV2('Confira aqui a lista geral dos canais do Divulga lista!', {
+    reply_markup: {
+      inline_keyboard: [
+        [
+          { text: '', url: '' }
+        ], // provavel com use um for aqui
+        [
+          { text: 'AVANÇAR', callback_data: 'AVANÇAR'},
+          { text: 'VOLTAR', callback_data: 'VOLTAR'}
+        ],
+        [
+          { text: '🏠 VOLTAR AO MENU PRINCIPAL', callback_data: '🏠 VOLTAR AO MENU PRINCIPAL' }
+        ],
+      ],
+      resize_keyboard: true,
+      one_time_keyboard: true
+    }
+  });
 }
+
+export default geralList;

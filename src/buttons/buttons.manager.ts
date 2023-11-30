@@ -4,6 +4,7 @@ import channelsCategory from "../messages/channelsCetegory.message.js";
 import homeMessage from "../messages/home.message.js";
 import infosMessage from '../messages/moreInfos.message.js';
 
+
 const buttonsManager = (bot: Telegraf) => {
   bot.action('CANAIS DIVULGADOS POR CATEGORIA', (ctx: Context) => {
     channelsCategory(ctx)
@@ -20,6 +21,7 @@ const buttonsManager = (bot: Telegraf) => {
   });
 
   bot.action('ADICIONAR CANAL', (ctx: Context) => {
+
     ctx.reply('texto de adicionar canal')
   });
 

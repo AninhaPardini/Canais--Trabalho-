@@ -4,7 +4,7 @@ import * as dotenv from 'dotenv';
 import startMessage from './messages/start.command';
 import buttonsManager from './buttons/buttons.manager';
 import helpMessage from './messages/help.command';
-import { keyboard } from 'telegraf/typings/markup';
+import { prisma } from './db';
 
 dotenv.config();
 
@@ -26,69 +26,41 @@ bot.telegram.getMe().then((bot) => {
 
 })
 
-bot.use((ctx) => {
+bot.use(async (ctx) => {
   const chatId: any = ctx.chat?.id;
   const botId: number = 6937764087;
   console.log(bot.telegram)
+
+ // const isMember2 = (await ctx.getChatMember(botId)).status.includes('kicked') ? 
+  const member = (await ctx.getChatMember(botId))
+  if (member.status === 'kicked' || member.status === 'left') {
+    return; // 
+  } 
+  const chatInfo = await ctx.telegram.getChat(chatId);
+
+  // Verificar se o chat é um canal
+  if (chatInfo.type != 'channel') {
+    return;
+
+  }
+  const membersCount = (await ctx.getChatMembersCount());
   
-  // #TODO: Fazer exception e corrigir erro quando bot sai do server
-  const isMember = ctx.getChatMember(botId).then(async (member) => {
-    if (member.status != 'kicked') {
-      const membersCount = await ctx.getChatMembersCount().then((chat) => {
-        const totalMembers: number = chat;
-        return console.log(totalMembers);
-      })
-      const chatInfo = await ctx.telegram.getChat(chatId);
+  if(process.env.NODE_ENV === "production" && membersCount < 100) {
+    return;
+  }
 
-      // Verificar se o chat é um canal
-      if (chatInfo.type === 'channel') {
-        const channelId = chatInfo.id
-        const channelTitle = chatInfo.invite_link
-        const inviteLink = `https://t.me/${chatInfo.username}`;
-
-        try {
-          await ctx.telegram.sendMessage(
-            channelId,
-            'Olá! Eu sou um bot e acabei de entrar neste canal. Seja bem-vindo!'
-          );
-        } catch (error) {
-          console.error('Erro ao enviar mensagem de boas-vindas:', error);
-        }
-
-        console.log(`O link de convite para o canal "${chatInfo.title}" é: ${inviteLink}`);
-      } else {
-        console.log('Este chat não é um canal.');
-      }
-
+  const channelId = chatInfo.id;
+  const channelTitle = chatInfo.title;
+  const isPrivateChannel = chatInfo.has_protected_content ? 'privado' : 'público';
+  const inviteLink = chatInfo.invite_link;
+  
+  await prisma.channel.create({
+    data: {
+      channel_chat_id: channelId.toString(),
       
-    
-    } else {
-      console.log('O bot não se encontra mais neste servidor')
     }
-  });
-  
-  return isMember;
-  
-})
-
-
-/*
-bot.use((ctx) => {
-  const chatInfo: any = ctx.channelPost?.chat.username;
-  const chatType: string | undefined = ctx.chat?.type;
-  const channelTitle: string | undefined = ctx.channelPost?.chat.title;
-  const channelMembers: any = ctx.channelPost?.chat;
-  const channelLink: string | undefined = ctx.myChatMember?.invite_link?.invite_link;
-  // if (!token || !channelLink || channelTitle) {
-  //   throw new Error('Algumas informações estão faltando');
-  // }
-
-  // Armazene o chatId em seu banco de dados ou em algum lugar
-  // onde você possa recuperá-lo posteriormente.
-  console.log(`Tipo de chat: ${chatType},\n Titulo: "${channelTitle}"\n Id do chat: ${chatId}\n Link: ${channelLink}\n Membros ${channelMembers}\n Chat ${chatInfo}`);
+  })
 });
-*/
-
 
 // Start no bot
 bot.launch();

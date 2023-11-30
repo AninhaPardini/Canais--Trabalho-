@@ -8,15 +8,19 @@ import { Context } from "telegraf";
  * @description Contexto que contém a mensagem de Lista da categoria Geral de canais;
  * @since 1.0.0
  */
-const geralCategory = async (ctx: Context): Promise<void> => {
+const moreEighteen = async (ctx: Context): Promise<void> => {
   await ctx.deleteMessage();
 
-  await ctx.reply('', {
+  await ctx.reply('Confira aqui a lista dos canais para maiores de 18 anos do Divulga lista!', {
     reply_markup: {
       inline_keyboard: [
         [
-          { text: '', callback_data: '' }
+          { text: '', url: '' }
         ], // provavel com use um for aqui
+        [
+          { text: 'AVANÇAR', callback_data: 'AVANÇAR'},
+          { text: 'VOLTAR', callback_data: 'VOLTAR'}
+        ],
         [
           { text: '🏠 VOLTAR AO MENU PRINCIPAL', callback_data: '🏠 VOLTAR AO MENU PRINCIPAL' }
         ],
@@ -26,3 +30,5 @@ const geralCategory = async (ctx: Context): Promise<void> => {
     }
   });
 };
+
+export default moreEighteen;

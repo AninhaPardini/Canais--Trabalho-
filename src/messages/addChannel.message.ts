@@ -3,8 +3,8 @@ import { Context } from "telegraf";
 const addChanneltoListMessage = async (ctx: Context) => {
   await ctx.deleteMessage();
 
-  await ctx.replyWithMarkdown(
-    `✋ *Antes de tudo...*\n• Seu canal deve ter pelo menos 100 inscritos para entrar na lista.\n\n❓ *Como participar?*\nÉ necessário me adicionar em seu canal e me conceder as seguintes permissões:\n\n✅ Postar Mensagens\n✅ Editar Mensagens de Outros\n✅ Apagar Mensagens de Outros\n✅ Convidar Usuários via Link`,
+  await ctx.replyWithMarkdownV2(
+    '✋ *Antes de tudo*\n• Seu canal deve ter pelo menos 100 inscritos para entrar na lista\n\n❓ *Como participar?*\nÉ necessário me adicionar em seu canal e me conceder as seguintes permissões:\n\n✅ Postar Mensagens\n✅ Editar Mensagens de Outros\n✅ Apagar Mensagens de Outros\n✅ Convidar Usuários via Link',
     {
       reply_markup: {
         inline_keyboard: [
