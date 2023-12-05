@@ -1,13 +1,14 @@
 import { Telegraf } from "telegraf";
-import homeMessage from "./home.message";
+import homeMessage from "../../Buttons/Home/message/homeMessage";
 
-export const startMessage = (bot: Telegraf) => {
+const startMessage = async (bot: Telegraf) => {
   
   bot.start(async (ctx) => {
     console.log(ctx);
     homeMessage(ctx);
 
   });
+
 
 };
 

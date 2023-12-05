@@ -1,5 +1,5 @@
 import { Context } from "telegraf";
-import { prisma } from "../db";
+import { prisma } from "../../../../db";
 import { InlineKeyboardButton } from "telegraf/typings/core/types/typegram";
 
 /**
@@ -11,13 +11,13 @@ import { InlineKeyboardButton } from "telegraf/typings/core/types/typegram";
  * @see {}
  * @since 1.0.0
  */
-const channelListMessage = async (ctx: Context): Promise<void> => {
-
+const diversosReply = async (ctx: Context): Promise<void> => {
   async function getRandomChannels() {
     const channels = await prisma.channel.findMany({
-      take: 3,
-      orderBy: {
-        id: "asc",
+      where: {
+        category_id: {
+          equals: 2,
+        },
       },
     });
 
@@ -32,12 +32,13 @@ const channelListMessage = async (ctx: Context): Promise<void> => {
 
   const channels = await getRandomChannels().then((channels) => {
     for (let i = 0; i < channels.length; i++) {
-      let channelsList: InlineKeyboardButton[] = 
-        [{
+      let channelsList: InlineKeyboardButton[] = [
+        {
           text: `${channels[i].title}`,
           callback_data: `${channels[i].title}`,
           url: `${channels[i].link_invite}`,
-        }];
+        },
+      ];
 
       return channelsList;
     }
@@ -46,17 +47,13 @@ const channelListMessage = async (ctx: Context): Promise<void> => {
     return;
   }
 
-  
-
-  await ctx.reply("Venha conferir os melhores canais aqui!", {
+  await ctx.reply("Lista dos canais diversos do nosso Bot!", {
     reply_markup: {
-      inline_keyboard: [
-        channels.map((channel) => channel),
-      ],
+      inline_keyboard: [channels.map((channel) => channel)],
       resize_keyboard: true,
       one_time_keyboard: true,
     },
   });
 };
 
-export default channelListMessage;
+export default diversosReply;

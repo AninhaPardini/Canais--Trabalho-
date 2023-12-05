@@ -11,8 +11,10 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  username  String   @unique
+  id       BigInt    @id
+  username String
+  channels Channel[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -20,10 +22,25 @@ model User {
 }
 
 model Channel {
-  id              Int      @id @default(autoincrement())
-  channel_chat_id String   @unique
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  id           BigInt   @id @default(autoincrement())
+  user         User     @relation(fields: [user_id], references: [id])
+  user_id      BigInt   @unique
+  category     Category @relation(fields: [category_id], references: [id])
+  category_id  Int
+  username     String
+  title        String
+  member_count Int
+  link_invite  String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
   @@map("channels")
+}
+
+model Category {
+  id      Int       @id
+  name    String    @unique
+  Channel Channel[]
+
+  @@map("categories")
 }

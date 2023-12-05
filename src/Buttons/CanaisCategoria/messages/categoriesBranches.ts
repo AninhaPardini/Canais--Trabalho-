@@ -1,6 +1,6 @@
 import { Context } from "telegraf";
 
-const channelsCategory = async (ctx: Context) => {
+const categoriesBranches = async (ctx: Context) => {
   await ctx.deleteMessage();
 
   await ctx.replyWithMarkdownV2('Uma lista com dois botões', {
@@ -18,6 +18,7 @@ const channelsCategory = async (ctx: Context) => {
       one_time_keyboard: true
     }
   });
-};
 
-export default channelsCategory;
+}
+
+export default categoriesBranches;

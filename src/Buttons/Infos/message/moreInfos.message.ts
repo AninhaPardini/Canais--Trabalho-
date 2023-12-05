@@ -1,10 +1,10 @@
 import { Context } from "telegraf";
 
-const infosMessage = async (ctx:Context): Promise<void> => {
+const infosMessage = async (ctx:Context) => {
   await ctx.deleteMessage();
 
   await ctx.replyWithMarkdownV2(
-    'Manual de como usar o @DivulgaListaBot\n\n',
+    'Manual de como usar o @DivulgaListaBot',
     {
       reply_markup: {
         inline_keyboard: [
