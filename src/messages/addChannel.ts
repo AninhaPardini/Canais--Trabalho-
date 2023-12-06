@@ -3,7 +3,6 @@ import { prisma } from "../db";
 import validatorUsername from "../Middlewares/validatorUsername";
 import validatorChatId from "../Middlewares/validatorChatId";
 import channelsService from "../Service/channelsService";
-import channelListMessage from "./channelsList.message";
 
 
 const colectData = async (ctx: Context, bot: Telegraf, userId: number) => {
@@ -100,7 +99,7 @@ const colectData = async (ctx: Context, bot: Telegraf, userId: number) => {
     `Bem-vindos(as) ${channelTitle}! Agora vocês estão participando da lista!`
   );
 
-  channelListMessage(ctx);
+
 };
 
 export default colectData;
