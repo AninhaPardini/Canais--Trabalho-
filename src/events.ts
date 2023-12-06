@@ -1,12 +1,11 @@
 import { Telegraf } from "telegraf";
-import canaisCategorias from "./Buttons/CanaisCategoria";
-import backToHome from "./Buttons/Home";
-import infos from "./Buttons/Infos";
-import addChannels from "./Buttons/AddChannels";
-import startCommand from "./Commands/Start/start.command";
-import helpMessage from "./Commands/Help/help.command";
-import participarLista from "./Buttons/PaticiparDaLista";
-import colectData from "./Messages/addChannel";
+import canaisCategorias from "./buttons/canaisCategoria";
+import backToHome from "./buttons/home";
+import infos from "./buttons/infos";
+import addChannels from "./buttons/addChannels";
+import startCommand from "./commands/Start/start.command";
+import helpMessage from "./commands/Help/help.command";
+import participarLista from "./buttons/paticiparDaLista";
 
 const Events = (bot: Telegraf) => {
   startCommand(bot);
