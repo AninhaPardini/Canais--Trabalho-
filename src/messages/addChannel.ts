@@ -2,8 +2,8 @@ import { Context, Telegraf } from "telegraf";
 import { prisma } from "../db";
 import validatorUsername from "../Middlewares/validatorUsername";
 import validatorChatId from "../Middlewares/validatorChatId";
-import channelListMessage from "./channelsList.message";
 import channelsService from "../Service/channelsService";
+import channelListMessage from "./channelsList.message";
 
 
 const colectData = async (ctx: Context, bot: Telegraf, userId: number) => {
@@ -15,6 +15,9 @@ const colectData = async (ctx: Context, bot: Telegraf, userId: number) => {
     return;
   }
 
+  if (userUsername === undefined) {
+    return;
+  }
 
   const chatInfo = await ctx.telegram.getChat(chatId);
 
