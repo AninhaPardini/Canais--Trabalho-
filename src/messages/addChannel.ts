@@ -22,7 +22,9 @@ const colectData = async (ctx: Context, bot: Telegraf, userId: number) => {
 
   const isPrivateChannel: boolean | undefined = chatInfo.has_protected_content;
   if (isPrivateChannel === true) {
-    return ctx.reply("Você precisa ter um canal público para estar na lista!");
+    ctx.reply("Você precisa ter um canal público para estar na lista!");
+
+    return;
   }
 
   // Verificar se o chat é um canal
@@ -34,9 +36,11 @@ const colectData = async (ctx: Context, bot: Telegraf, userId: number) => {
   console.log(membersCount);
 
   if (process.env.NODE_ENV === "production" && membersCount < 100) {
-    return ctx.reply(
+    ctx.reply(
       "Você precisa ter pelo menos 100 membros no canal para estar na lista!"
     );
+
+    return;
   }
 
   const channelTitle: string = chatInfo.title;
@@ -47,7 +51,7 @@ const colectData = async (ctx: Context, bot: Telegraf, userId: number) => {
   const inviteLink: string = hasInvite;
   let hasChannelUsername: string | undefined = chatInfo.username;
   if (!hasChannelUsername) {
-    return (hasChannelUsername = "n/a");
+    return;
   }
   const channelUsername = hasChannelUsername;
 

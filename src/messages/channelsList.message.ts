@@ -11,7 +11,7 @@ import { InlineKeyboardButton } from "telegraf/typings/core/types/typegram";
  * @see {}
  * @since 1.0.0
  */
-const channelListMessage = async (ctx: Context): Promise<void> => {
+const channelsListMessage = async (ctx: Context): Promise<void> => {
   const getRandomChannels = async () => {
     const channels = await prisma.channel.findMany({
       take: 19,
@@ -63,4 +63,4 @@ const channelListMessage = async (ctx: Context): Promise<void> => {
   });
 };
 
-export default channelListMessage;
+export default channelsListMessage;

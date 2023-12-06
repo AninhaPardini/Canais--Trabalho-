@@ -3,7 +3,7 @@ import { Context, Telegraf } from "telegraf";
 import colectUserInfos from "./Middlewares/colectUserInfos";
 import Events from "./events";
 import { CronJob } from "cron";
-import channelListMessage from "./Messages/channelsList.message";
+import channelsListMessage from "./Messages/channelsList.message";
 
 const token: string | undefined = process.env.TOKEN;
 if (!token) {
@@ -16,7 +16,7 @@ const jobMoring = new CronJob(
   "* * 10 * *", // cronTime
   function () {
     bot.use(async (ctx, next) => {
-      channelListMessage(ctx);
+      channelsListMessage(ctx);
 
       next();
     });
@@ -30,7 +30,7 @@ const jobEvening = new CronJob(
   "* * 18 * *", // cronTime
   function () {
     bot.use(async (ctx, next) => {
-      channelListMessage(ctx);
+      channelsListMessage(ctx);
 
       next();
     });
