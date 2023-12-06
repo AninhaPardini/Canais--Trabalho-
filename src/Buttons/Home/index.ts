@@ -3,7 +3,13 @@ import homeMessage from "./message/homeMessage";
 
 const backToHome = async (bot: Telegraf) => {
   bot.action('🏠 VOLTAR AO MENU PRINCIPAL', async (ctx: Context) => {
-    await ctx.deleteMessage();
+    try {
+      await ctx.deleteMessage();
+    }
+    catch (error) {
+      console.log('Ocorreu um problema ao deletar a mensagem!'+ error);
+    }
+    
     homeMessage(ctx);
   });
 }

@@ -1,10 +1,16 @@
 import { Context } from "telegraf";
 
 const infosMessage = async (ctx:Context) => {
-  await ctx.deleteMessage();
+  try {
+    await ctx.deleteMessage();
+    
+  }
+  catch (error) {
+    console.log('Ocorreu um problema ao deletar a mensagem!'+ error);
+  }
 
   await ctx.replyWithMarkdownV2(
-    'Manual de como usar o @DivulgaListaBot',
+    'Manual de como usar o @DivulgaLista_Bot',
     {
       reply_markup: {
         inline_keyboard: [
@@ -17,6 +23,7 @@ const infosMessage = async (ctx:Context) => {
       },
     }
   );
+  
 }
 
 export default infosMessage;

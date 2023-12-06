@@ -1,6 +1,10 @@
 import { Context } from "telegraf";
 import { prisma } from "../../../../db";
-import { InlineKeyboardButton } from "telegraf/typings/core/types/typegram";
+import {
+  InlineKeyboardButton,
+  InlineKeyboardMarkup,
+  ReplyKeyboardMarkup,
+} from "telegraf/typings/core/types/typegram";
 
 /**
  * Esta função envia uma lista de mensagens de canais.
@@ -25,36 +29,45 @@ const generalListCategory = async (ctx: Context): Promise<void> => {
       },
     });
 
-    // Embaralha o array
-    for (let i = categories.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [categories[i], categories[j]] = [categories[j], categories[i]];
-    }
+    console.log(categories);
 
     return categories;
   }
 
   const categories = await getRandomChannels().then((categories) => {
+    let categoriesList: InlineKeyboardButton[][] = [];
     for (let i = 0; i < categories.length; i++) {
-      let categoriesList: InlineKeyboardButton[] = [
+      categoriesList.push([
         {
           text: `${categories[i].name}`,
           callback_data: `${categories[i].name}`,
         },
-      ];
-
-      return categoriesList;
+      ]);
     }
+
+    categoriesList.push([
+      {
+        text: "🏠 VOLTAR AO MENU PRINCIPAL",
+        callback_data: "🏠 VOLTAR AO MENU PRINCIPAL",
+      },
+    ]);
+
+    return categoriesList;
   });
   if (!categories) {
     return;
   }
 
+  try {
+    await ctx.deleteMessage();
+  } catch (error) {
+    console.log("Ocorreu um problema ao deletar a mensagem!" + error);
+  }
+
   await ctx.reply("Confira a lista das categorias que temos:", {
     reply_markup: {
-      inline_keyboard: [categories.map((category) => category)],
-      resize_keyboard: true,
-      one_time_keyboard: true,
+      // como eu faço aqui?
+      inline_keyboard: categories,
     },
   });
 };

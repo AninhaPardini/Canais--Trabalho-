@@ -11,7 +11,6 @@ import { Context, Telegraf } from "telegraf";
 const helpMessage = async (bot: Telegraf): Promise<void> => {
 
   bot.help(async (ctx: Context) => {
-    await ctx.deleteMessage();
 
     await ctx.reply(
       'Manual de como usar o @DivulgaCanais\n\n'

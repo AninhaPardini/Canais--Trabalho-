@@ -1,6 +1,6 @@
 import { prisma } from "../db";
 
-const channelsCreateDTO = async (
+const createChannel = async (
   channelId: number,
   channelTitle: string,
   channelUsername: string,
@@ -21,7 +21,7 @@ const channelsCreateDTO = async (
   });
 };
 
-const updateDTO = async (
+const updateChannel = async (
   channelId: number,
   channelTitle: string,
   channelUsername: string,
@@ -43,7 +43,7 @@ const updateDTO = async (
   });
 };
 
-const deleteDTO = async (chatId: number) => {
+const deleteChannel = async (chatId: number) => {
   const channels = await prisma.channel.findMany({
     where: {
       user_id: chatId,
@@ -64,7 +64,7 @@ const deleteDTO = async (chatId: number) => {
   });
 };
 
-const upsertDTO = async (
+const upsertChannel = async (
   channelId: number,
   channelTitle: string,
   channelUsername: string,
@@ -95,4 +95,4 @@ const upsertDTO = async (
   });
 };
 
-export default { channelsCreateDTO, updateDTO, deleteDTO, upsertDTO };
+export default { createChannel, updateChannel, deleteChannel, upsertChannel };

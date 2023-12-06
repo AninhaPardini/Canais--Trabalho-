@@ -1,6 +1,6 @@
 import { Context } from "telegraf";
 import { prisma } from "../db";
-import channelsDTO from "../Service/channelsService";
+import channelsService from "../Service/channelsService";
 
 const validatorMember = async (ctx: Context, botId: number, chatId: number) => {
   try {
@@ -19,7 +19,7 @@ const validatorMember = async (ctx: Context, botId: number, chatId: number) => {
           return;
         }
 
-        channelsDTO.deleteDTO(chatId);
+        channelsService.deleteChannel(chatId);
       } catch (error) {
         console.log(`Não consegui interação com o canal. error: ${error}`);
       }

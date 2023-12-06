@@ -2,12 +2,19 @@ import { Context, Telegraf } from "telegraf";
 import { prisma } from "../db";
 import validatorUsername from "../Middlewares/validatorUsername";
 import validatorChatId from "../Middlewares/validatorChatId";
+import channelListMessage from "./channelsList.message";
+import channelsService from "../Service/channelsService";
 
 
 const colectData = async (ctx: Context, bot: Telegraf, userId: number) => {
   const botId: number = 6937764087;
-  const chatId = validatorChatId(ctx);
-  const userUsername = validatorUsername(ctx);
+  const chatId = ctx.message?.chat.id;
+  const userUsername = ctx.from?.username;
+
+  if (chatId === undefined) {
+    return;
+  }
+
 
   const chatInfo = await ctx.telegram.getChat(chatId);
 
@@ -55,27 +62,36 @@ const colectData = async (ctx: Context, bot: Telegraf, userId: number) => {
     },
   });
 
-  await prisma.channel.upsert({
-    where: {
-      id: chatId,
-    },
-    update: {
-      title: channelTitle,
-      username: channelUsername,
-      link_invite: inviteLink,
-      category_id: 1,
-      member_count: membersCount,
-    },
-    create: {
-      id: chatId,
-      title: channelTitle,
-      username: channelUsername,
-      link_invite: inviteLink,
-      category_id: 1,
-      member_count: membersCount,
-      user_id: chatId,
-    },
-  });
+  channelsService.upsertChannel(
+    chatId,
+    channelTitle,
+    channelUsername,
+    inviteLink,
+    membersCount,
+    userId
+  );
+
+  // await prisma.channel.upsert({
+  //   where: {
+  //     id: chatId,
+  //   },
+  //   update: {
+  //     title: channelTitle,
+  //     username: channelUsername,
+  //     link_invite: inviteLink,
+  //     category_id: 1,
+  //     member_count: membersCount,
+  //   },
+  //   create: {
+  //     id: chatId,
+  //     title: channelTitle,
+  //     username: channelUsername,
+  //     link_invite: inviteLink,
+  //     category_id: 1,
+  //     member_count: membersCount,
+  //     user_id: chatId,
+  //   },
+  // });
 
   ctx.reply(
     `Bem-vindos(as) ${channelTitle}! Agora vocês estão participando da lista!`

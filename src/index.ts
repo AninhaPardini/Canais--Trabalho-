@@ -2,6 +2,8 @@ import { Context, Telegraf } from "telegraf";
 import * as dotenv from "dotenv";
 import colectUserInfos from "./Middlewares/colectUserInfos";
 import Events from "./events";
+import { CronJob } from "cron";
+import channelListMessage from "./Messages/channelsList.message";
 
 dotenv.config();
 
@@ -12,7 +14,33 @@ if (!token) {
 
 const bot = new Telegraf(token);
 
-colectUserInfos(bot);
+const jobMoring = new CronJob(
+  "* * 10 * *", // cronTime
+  function () {
+    bot.use(async (ctx, next) => {
+      channelListMessage(ctx);
+
+      next();
+    });
+  }, // onTick
+  null, // onComplete
+  true, // start
+  "America/Sao_Paulo" // timeZone
+);
+
+const jobEvening = new CronJob(
+  "* * 18 * *", // cronTime
+  function () {
+    bot.use(async (ctx, next) => {
+      channelListMessage(ctx);
+
+      next();
+    });
+  }, // onTick
+  null, // onComplete
+  true, // start
+  "America/Los_Angeles" // timeZone
+);
 
 bot.telegram.getMe().then((bot) => {
   if (bot.is_bot) {

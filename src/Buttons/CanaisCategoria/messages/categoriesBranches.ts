@@ -1,7 +1,12 @@
 import { Context } from "telegraf";
 
 const categoriesBranches = async (ctx: Context) => {
-  await ctx.deleteMessage();
+  try {
+    await ctx.deleteMessage();
+  }
+  catch (error) {
+    console.log('Ocorreu um problema no envio da mensagem!'+ error);
+  }
 
   await ctx.replyWithMarkdownV2('Uma lista com dois botões', {
     reply_markup: {

@@ -32,25 +32,39 @@ const entretenimentoReply = async (ctx: Context): Promise<void> => {
   }
 
   const channels = await getRandomChannels().then((channels) => {
+    let channelsList: InlineKeyboardButton[][] = [];
     for (let i = 0; i < channels.length; i++) {
-      let channelsList: InlineKeyboardButton[] = [
+      channelsList.push([
         {
           text: `${channels[i].title}`,
-          callback_data: `${channels[i].title}`,
-          url: `${channels[i].link_invite}`,
+          callback_data: `${channels[i].title}`, url: `${channels[i].link_invite}`,
         },
-      ];
-
-      return channelsList;
+      ]);
     }
+
+    channelsList.push([
+      {
+        text: "🏠 VOLTAR AO MENU PRINCIPAL",
+        callback_data: "🏠 VOLTAR AO MENU PRINCIPAL",
+      },
+    ]);
+
+    return channelsList;
+
   });
   if (!channels) {
     return;
   }
 
+  try {
+    await ctx.deleteMessage();
+  } catch (error) {
+    console.log("Ocorreu um problema ao deletar a mensagem!" + error);
+  }
+
   await ctx.reply("Lista dos canais de entretenimento do nosso Bot!", {
     reply_markup: {
-      inline_keyboard: [channels.map((channel) => channel)],
+      inline_keyboard: channels,
       resize_keyboard: true,
       one_time_keyboard: true,
     },
