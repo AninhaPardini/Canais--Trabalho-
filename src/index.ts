@@ -1,19 +1,9 @@
 import "dotenv/config";
 import { Context, Telegraf } from "telegraf";
-<<<<<<< HEAD
-import * as dotenv from "dotenv";
-import colectUserInfos from "./middlewares/colect-user-infos";
-import Events from "./events";
-import { CronJob } from "cron";
-import channelListMessage from "./messages/channels-list.message";
-
-dotenv.config();
-=======
 import colectUserInfos from "./middlewares/colect-user-infos";
 import Events from "./events";
 import { CronJob } from "cron";
 import channelsListMessage from "./messages/channels-list.message";
->>>>>>> refs/remotes/origin/main
 
 const token: string | undefined = process.env.TOKEN;
 if (!token) {
