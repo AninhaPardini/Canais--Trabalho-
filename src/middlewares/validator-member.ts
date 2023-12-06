@@ -1,6 +1,6 @@
 import { Context } from "telegraf";
 import { prisma } from "../db";
-import channelsService from "../service/channelsService";
+import channelsService from "../service/channels-service";
 
 const validatorMember = async (ctx: Context, botId: number, chatId: number) => {
   try {

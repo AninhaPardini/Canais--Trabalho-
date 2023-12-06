@@ -1,5 +1,5 @@
 import { Telegraf } from "telegraf";
-import homeMessage from "../../buttons/home/message/homeMessage";
+import homeMessage from "../../buttons/home/message/home.message";
 
 const startMessage = async (bot: Telegraf) => {
   

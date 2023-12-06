@@ -1,12 +1,12 @@
 import { Context, Telegraf } from 'telegraf';
-import categoriesBranches from './messages/categoriesBranches';
-import generalListCategory from './messages/general/generalCategoryList';
-import negociosReply from './messages/general/negociosReply';
-import diversosReply from './messages/general/diversosReply';
-import entretenimentoReply from './messages/general/entretenimentoReply';
-import estudosReply from './messages/general/estudosReply';
-import tecnologiaReply from './messages/general/tecnologiasReply';
-import moreEighteenCategory from './messages/nfsw/moreEighteenCategoryList';
+import categoriesBranches from './messages/categories-branches';
+import generalListCategory from './messages/general/general-category-list';
+import negociosReply from './messages/general/negocios-reply';
+import diversosReply from './messages/general/diversos-reply';
+import entretenimentoReply from './messages/general/entretenimento-reply';
+import estudosReply from './messages/general/estudos-reply';
+import tecnologiaReply from './messages/general/tecnologias-reply';
+import moreEighteenCategory from './messages/nfsw/more-eighteen-categoryList';
 
 const canaisCategorias = (bot: Telegraf) => {
   bot.action('CANAIS DIVULGADOS POR CATEGORIA', (ctx: Context) => {

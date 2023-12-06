@@ -1,6 +1,6 @@
 import { Context, Telegraf } from "telegraf";
-import validatorChatId from "./validatorChatId";
-import validatorMember from "./validatorMember";
+import validatorChatId from "./validator-chat-id";
+import validatorMember from "./validator-member";
 import { prisma } from "../db";
 
 const colectUserInfos = async (bot: Telegraf) => {
