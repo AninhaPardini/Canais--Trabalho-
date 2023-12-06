@@ -1,5 +1,5 @@
 import { Context, Telegraf } from "telegraf";
-import infosMessage from "./message/moreInfos.message";
+import infosMessage from "./message/more-infos.message";
 
 
 const infos = async (bot: Telegraf) => {
