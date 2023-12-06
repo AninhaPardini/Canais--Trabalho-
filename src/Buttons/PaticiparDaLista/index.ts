@@ -1,5 +1,5 @@
 import { Context, Telegraf } from 'telegraf';
-import participarDaLista from './message/participar-da-lista';
+import participarDaLista from './message/participarDaLista';
 
 const participarLista = async (bot: Telegraf) => {
   bot.action('PARTICIPAR DA LISTA', (ctx: Context) => {

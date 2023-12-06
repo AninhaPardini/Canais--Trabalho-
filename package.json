@@ -2,7 +2,7 @@
   "scripts": {
     "start": "node ./dist/index.js",
     "dev:ts": "tsx --watch ./src/index.ts",
-    "build": "tsc"
+    "build": "tsup ./src"
   },
   "dependencies": {
     "@prisma/client": "^5.6.0",
