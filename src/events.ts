@@ -1,25 +1,15 @@
 import { Telegraf } from "telegraf";
-<<<<<<< HEAD
+import startMessage from "./commands/start/start.command";
 import canaisCategorias from "./buttons/categorias";
 import backToHome from "./buttons/home";
 import infos from "./buttons/Infos";
 import addChannels from "./buttons/channels";
-import startCommand from "./commands/start/start.command";
 import helpMessage from "./commands/help/help.command";
-import participarLista from "./buttons/participar";
 
-=======
-import canaisCategorias from "./buttons/canaisCategoria/index";
-import backToHome from "./buttons/home/index";
-import infos from "./buttons/infos/index";
-import addChannels from "./buttons/channels/index";
-import startCommand from "./commands/start/start.command";
-import helpMessage from "./commands/help/help.command";
-import participarLista from "./buttons/participar/index";
->>>>>>> refs/remotes/origin/main
+
 
 const Events = (bot: Telegraf) => {
-  startCommand(bot);
+  startMessage(bot);
 
   canaisCategorias(bot);
 
@@ -28,8 +18,6 @@ const Events = (bot: Telegraf) => {
   infos(bot);
 
   addChannels(bot);
-
-  participarLista(bot);
 
   helpMessage(bot);
 

@@ -1,9 +1,10 @@
-import * as Telegraf from "telegraf";
+import { Context, Telegraf } from "telegraf";
 
-const channelListMessage = async (bot) => {
+
+const channelListMessage = async (bot: Telegraf,ctx: Context) => {
   await ctx.deleteMessage();
 
-  await bot.reply((ctx) => ctx.reply(''))
+  // await ctx.reply((ctx) => ctx.reply(''))
 }
 
 export default channelListMessage;
