@@ -1,9 +1,9 @@
 import { Context, Telegraf } from "telegraf";
 import { prisma } from "../db";
-import validatorUsername from "../Middlewares/validatorUsername";
-import validatorChatId from "../Middlewares/validatorChatId";
-import channelsService from "../Service/channelsService";
-import channelListMessage from "./channelsList.message";
+import validatorUsername from "../middlewares/validator-username";
+import validatorChatId from "../middlewares/validator-chat-id";
+import channelsService from "../service/channels-service";
+import channelListMessage from "./channels-list.message";
 
 
 const colectData = async (ctx: Context, bot: Telegraf, userId: number) => {

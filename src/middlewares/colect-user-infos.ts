@@ -1,5 +1,5 @@
 import { Context, Telegraf } from "telegraf";
-import validatorChatId from "./validatorChatId";
+import validatorChatId from "./validator-chat-id";
 import validatorMember from "./validatorMember";
 import { prisma } from "../db";
 

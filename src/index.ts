@@ -1,9 +1,9 @@
 import { Context, Telegraf } from "telegraf";
 import * as dotenv from "dotenv";
-import colectUserInfos from "./Middlewares/colectUserInfos";
+import colectUserInfos from "./middlewares/colect-user-infos";
 import Events from "./events";
 import { CronJob } from "cron";
-import channelListMessage from "./Messages/channelsList.message";
+import channelListMessage from "./messages/channels-list.message";
 
 dotenv.config();
 

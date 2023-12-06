@@ -1,5 +1,5 @@
 import { Context, Telegraf } from "telegraf";
-import homeMessage from "./message/homeMessage";
+import homeMessage from "./message/home.message";
 
 const backToHome = async (bot: Telegraf) => {
   bot.action('🏠 VOLTAR AO MENU PRINCIPAL', async (ctx: Context) => {
