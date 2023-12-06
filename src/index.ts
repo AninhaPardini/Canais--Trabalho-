@@ -1,4 +1,6 @@
+import "dotenv/config";
 import { Context, Telegraf } from "telegraf";
+<<<<<<< HEAD
 import * as dotenv from "dotenv";
 import colectUserInfos from "./middlewares/colect-user-infos";
 import Events from "./events";
@@ -6,6 +8,12 @@ import { CronJob } from "cron";
 import channelListMessage from "./messages/channels-list.message";
 
 dotenv.config();
+=======
+import colectUserInfos from "./middlewares/colect-user-infos";
+import Events from "./events";
+import { CronJob } from "cron";
+import channelsListMessage from "./messages/channels-list.message";
+>>>>>>> refs/remotes/origin/main
 
 const token: string | undefined = process.env.TOKEN;
 if (!token) {
@@ -18,7 +26,7 @@ const jobMoring = new CronJob(
   "* * 10 * *", // cronTime
   function () {
     bot.use(async (ctx, next) => {
-      channelListMessage(ctx);
+      channelsListMessage(ctx);
 
       next();
     });
@@ -32,7 +40,7 @@ const jobEvening = new CronJob(
   "* * 18 * *", // cronTime
   function () {
     bot.use(async (ctx, next) => {
-      channelListMessage(ctx);
+      channelsListMessage(ctx);
 
       next();
     });
